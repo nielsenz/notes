@@ -16,9 +16,35 @@ def index():
         note = Note(body=form.note.data, author=current_user)
         db.session.add(note)
         db.session.commit()
-        flash('Your post is now live!')
+        flash('Your note has been received!')
         return redirect(url_for('index'))
     
+    page = request.args.get('page', 1, type=int)
+    notes = current_user.followed_posts().paginate(
+        page, app.config['POSTS_PER_PAGE'], False)
+    next_url = url_for('index', page=notes.next_num) \
+        if notes.has_next else None
+    prev_url = url_for('index', page=notes.prev_num) \
+        if notes.has_prev else None
+    return render_template('index.html', title='Home', form=form,
+                           notes=notes.items, next_url=next_url,
+                           prev_url=prev_url)
+##View for archieving a note
+@app.route('/archive/<pk>/', methods=['GET','POST'])
+def archive_note(pk):
+    try:
+        Note.query.filter_by(id=pk).filter_by(author=current_user).update({'archived': True})      #Note.get(Note.id == pk)
+    except Note.DoesNotExist:
+       return render_template('404.html')
+    db.session.commit()
+    flash('Your note has been deleted!!')
+    form = PostForm()
+    if form.validate_on_submit():
+        note = Note(body=form.note.data, author=current_user)
+        db.session.add(note)
+        db.session.commit()
+        flash('Your note has been received!')
+        return redirect(url_for('index'))
     page = request.args.get('page', 1, type=int)
     notes = current_user.followed_posts().paginate(
         page, app.config['POSTS_PER_PAGE'], False)

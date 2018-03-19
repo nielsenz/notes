@@ -1,8 +1,4 @@
-2018-03-18 11:53:31,930 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:43]
-2018-03-18 11:53:42,906 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:43]
-2018-03-18 12:14:51,128 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:43]
-2018-03-18 12:17:02,526 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:43]
-2018-03-18 12:17:40,293 ERROR: Exception on /index [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+2018-03-18 18:23:05,556 ERROR: Exception on /index [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
 Traceback (most recent call last):
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -18,35 +14,21 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/nielsenz/flaskNotes/app/routes.py", line 28, in index
-    notes=notes.items)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/templating.py", line 134, in render_template
-    context, ctx.app)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/templating.py", line 116, in _render
-    rv = template.render(context)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/nielsenz/flaskNotes/app/templates/index.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/nielsenz/flaskNotes/app/templates/base.html", line 29, in top-level template code
-    {% block content %}{% endblock %}
-  File "/Users/nielsenz/flaskNotes/app/templates/index.html", line 7, in block "content"
-    {{ form.post.label }}<br>
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/environment.py", line 430, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'app.forms.PostForm object' has no attribute 'post'
-2018-03-18 12:19:35,342 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:43]
-2018-03-18 12:23:27,118 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:43]
-2018-03-18 12:25:53,923 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:43]
-2018-03-18 12:27:29,199 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:43]
-2018-03-18 13:16:45,983 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:47]
-2018-03-18 13:16:54,791 ERROR: Exception on / [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+  File "/Users/nielsenz/flaskNotes/app/routes.py", line 23, in index
+    notes = current_user.followed_posts().paginate(
+  File "/Users/nielsenz/flaskNotes/app/models.py", line 32, in followed_posts
+    return own.filter_by(Note.archived == False).order_by(Note.timestamp.desc())
+TypeError: filter_by() takes 1 positional argument but 2 were given
+2018-03-18 18:24:27,638 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 18:26:58,903 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 18:27:07,126 ERROR: Exception on /archive/26/ [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/app/routes.py", line 36, in archive_note
+    note = Note.get(Note.id == pk)
+AttributeError: type object 'Note' has no attribute 'get'
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -60,46 +42,96 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/nielsenz/flaskNotes/app/routes.py", line 36, in index
-    prev_url=prev_url)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/templating.py", line 134, in render_template
-    context, ctx.app)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/templating.py", line 116, in _render
-    rv = template.render(context)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/nielsenz/flaskNotes/app/templates/index.html", line 2, in top-level template code
-    {% import 'bootstrap/wtf.html' as wtf %}
-  File "/Users/nielsenz/flaskNotes/app/templates/base.html", line 1, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
-    {%- block html %}
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
-    {% block body -%}
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
-    {% block navbar %}
-  File "/Users/nielsenz/flaskNotes/app/templates/base.html", line 27, in block "navbar"
-    <li><a href="{{ url_for('user', username=current_user.username) }}">Profile</a></li>
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
+  File "/Users/nielsenz/flaskNotes/app/routes.py", line 37, in archive_note
+    except Note.DoesNotExist:
+AttributeError: type object 'Note' has no attribute 'DoesNotExist'
+2018-03-18 18:33:24,160 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 18:33:30,833 ERROR: Exception on /archive/26/ [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
     reraise(exc_type, exc_value, tb)
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
     raise value
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/helpers.py", line 323, in url_for
-    force_external=external)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'user' with values ['username']. Did you mean 'register' instead?
-2018-03-18 13:19:15,251 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:47]
-2018-03-18 13:23:14,825 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:47]
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/nielsenz/flaskNotes/app/routes.py", line 40, in archive_note
+    note.save()
+AttributeError: 'BaseQuery' object has no attribute 'save'
+2018-03-18 18:37:07,174 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 18:37:13,398 ERROR: Exception on /archive/26/ [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1740, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/wrappers.py", line 921, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/wrappers.py", line 59, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/test.py", line 923, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'bool' object is not callable
+2018-03-18 18:41:38,403 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 18:41:44,256 ERROR: Exception on /archive/25/ [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1740, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/wrappers.py", line 921, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/wrappers.py", line 59, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/test.py", line 923, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'bool' object is not callable
+2018-03-18 18:43:43,210 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 18:43:46,032 ERROR: Exception on /archive/25/ [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/nielsenz/flaskNotes/app/routes.py", line 39, in archive_note
+    note_new(archived = True)
+TypeError: 'BaseQuery' object is not callable
+2018-03-18 18:43:49,925 ERROR: Exception on /archive/24/ [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/nielsenz/flaskNotes/app/routes.py", line 39, in archive_note
+    note_new(archived = True)
+TypeError: 'BaseQuery' object is not callable
+2018-03-18 18:44:37,904 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]

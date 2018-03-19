@@ -1,7 +1,7 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block title %}
-    {% if title %}{{ title }} - Everywhere Notes{% else %}Welcome to your notes, on the web{% endif %}
+    {% if title %}{{ title }} - Spider Notes{% else %}Welcome to your notes, on the web{% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('index') }}">Microblog</a>
+                <a class="navbar-brand" href="{{ url_for('index') }}">Spider Notes</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -30,10 +30,7 @@
             </div>
         </div>
     </nav>
-{% block scripts %}
-    {{ super() }}
-    {{ moment.include_moment() }}
-{% endblock %}
+    {% endblock %}
 
 {% block content %}
     <div class="container">
@@ -48,4 +45,14 @@
         {# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
     </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+    <script src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/imagesloaded.pkgd.min.js') }}"></script>
+     <script src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/notes.js') }}"></script>
 {% endblock %}

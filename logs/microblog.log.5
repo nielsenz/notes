@@ -1,0 +1,110 @@
+2018-03-18 17:24:07,171 ERROR: Exception on /index [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: note.archived
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/nielsenz/flaskNotes/app/routes.py", line 24, in index
+    page, app.config['POSTS_PER_PAGE'], False)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 491, in paginate
+    items = self.limit(per_page).offset((page - 1) * per_page).all()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2737, in all
+    return list(self)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2889, in __iter__
+    return self._execute_and_instances(context)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2912, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: note.archived [SQL: 'SELECT note.id AS note_id, note.body AS note_body, note.timestamp AS note_timestamp, note.user_id AS note_user_id, note.archived AS note_archived \nFROM note \nWHERE note.user_id = ? ORDER BY note.timestamp DESC\n LIMIT ? OFFSET ?'] [parameters: (3, 5, 0)] (Background on this error at: http://sqlalche.me/e/e3q8)
+2018-03-18 17:25:13,807 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 17:25:20,647 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 17:27:24,780 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 17:29:36,210 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 17:29:40,512 ERROR: Exception on /index [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/nielsenz/flaskNotes/app/routes.py", line 31, in index
+    prev_url=prev_url)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/templating.py", line 134, in render_template
+    context, ctx.app)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/templating.py", line 116, in _render
+    rv = template.render(context)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/nielsenz/flaskNotes/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/Users/nielsenz/flaskNotes/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/Users/nielsenz/flaskNotes/app/templates/base.html", line 46, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/Users/nielsenz/flaskNotes/app/templates/index.html", line 11, in block "app_content"
+    {% include '_post.html' %}
+  File "/Users/nielsenz/flaskNotes/app/templates/_post.html", line 12, in top-level template code
+    {{ note.html() }}
+  File "/Users/nielsenz/flaskNotes/app/models.py", line 61, in html
+    markdown(self.content),
+AttributeError: 'Note' object has no attribute 'content'
+2018-03-18 17:30:58,580 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]

@@ -1,4 +1,4 @@
-2018-03-18 13:29:19,553 ERROR: Exception on /index [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+2018-03-18 19:03:38,432 ERROR: Exception on /index [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
 Traceback (most recent call last):
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -44,8 +44,8 @@ Traceback (most recent call last):
     {% block app_content %}{% endblock %}
   File "/Users/nielsenz/flaskNotes/app/templates/index.html", line 11, in block "app_content"
     {% include '_post.html' %}
-  File "/Users/nielsenz/flaskNotes/app/templates/_post.html", line 4, in top-level template code
-    <a href="{{ url_for('user', username=note.author.username) }}">
+  File "/Users/nielsenz/flaskNotes/app/templates/_post.html", line 10, in top-level template code
+    href="{{ url_for('archive_note', pk=note.id) }}">&times;</a>
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
     return appctx.app.handle_url_build_error(error, endpoint, values)
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
@@ -56,8 +56,8 @@ Traceback (most recent call last):
     force_external=external)
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
     raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'user' with values ['username']. Did you mean 'register' instead?
-2018-03-18 13:29:21,047 ERROR: Exception on /index [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+werkzeug.routing.BuildError: Could not build url for endpoint 'archive_note' with values ['pk']. Did you mean 'def_archive_note' instead?
+2018-03-18 19:03:40,314 ERROR: Exception on /index [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
 Traceback (most recent call last):
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -103,8 +103,8 @@ Traceback (most recent call last):
     {% block app_content %}{% endblock %}
   File "/Users/nielsenz/flaskNotes/app/templates/index.html", line 11, in block "app_content"
     {% include '_post.html' %}
-  File "/Users/nielsenz/flaskNotes/app/templates/_post.html", line 4, in top-level template code
-    <a href="{{ url_for('user', username=note.author.username) }}">
+  File "/Users/nielsenz/flaskNotes/app/templates/_post.html", line 10, in top-level template code
+    href="{{ url_for('archive_note', pk=note.id) }}">&times;</a>
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
     return appctx.app.handle_url_build_error(error, endpoint, values)
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
@@ -115,4 +115,4 @@ Traceback (most recent call last):
     force_external=external)
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
     raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'user' with values ['username']. Did you mean 'register' instead?
+werkzeug.routing.BuildError: Could not build url for endpoint 'archive_note' with values ['pk']. Did you mean 'def_archive_note' instead?

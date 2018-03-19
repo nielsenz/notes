@@ -25,8 +25,8 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 class PostForm(FlaskForm):
-    note = TextAreaField('Say something', validators=[
-        DataRequired(), Length(min=1, max=140)])
+    note = TextAreaField('Write a note!', validators=[
+        DataRequired(), Length(min=1, max=1400)])
     submit = SubmitField('Submit')
 class ResetPasswordRequestForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])

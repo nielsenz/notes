@@ -1,4 +1,4 @@
-2018-03-18 13:29:22,002 ERROR: Exception on /index [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+2018-03-18 19:03:44,487 ERROR: Exception on /index [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
 Traceback (most recent call last):
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -44,8 +44,8 @@ Traceback (most recent call last):
     {% block app_content %}{% endblock %}
   File "/Users/nielsenz/flaskNotes/app/templates/index.html", line 11, in block "app_content"
     {% include '_post.html' %}
-  File "/Users/nielsenz/flaskNotes/app/templates/_post.html", line 4, in top-level template code
-    <a href="{{ url_for('user', username=note.author.username) }}">
+  File "/Users/nielsenz/flaskNotes/app/templates/_post.html", line 10, in top-level template code
+    href="{{ url_for('archive_note', pk=note.id) }}">&times;</a>
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
     return appctx.app.handle_url_build_error(error, endpoint, values)
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
@@ -56,65 +56,70 @@ Traceback (most recent call last):
     force_external=external)
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
     raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'user' with values ['username']. Did you mean 'register' instead?
-2018-03-18 13:29:29,769 ERROR: Exception on /index [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+werkzeug.routing.BuildError: Could not build url for endpoint 'archive_note' with values ['pk']. Did you mean 'def_archive_note' instead?
+2018-03-18 19:04:12,163 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 19:04:16,862 ERROR: Exception on /archive/25/ [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
 Traceback (most recent call last):
   File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
-    raise value
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/nielsenz/flaskNotes/app/routes.py", line 31, in index
-    prev_url=prev_url)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/templating.py", line 134, in render_template
-    context, ctx.app)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/templating.py", line 116, in _render
-    rv = template.render(context)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/nielsenz/flaskNotes/app/templates/index.html", line 2, in top-level template code
-    {% import 'bootstrap/wtf.html' as wtf %}
-  File "/Users/nielsenz/flaskNotes/app/templates/base.html", line 1, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
-    {%- block html %}
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
-    {% block body -%}
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
-    {% block content -%}
-  File "/Users/nielsenz/flaskNotes/app/templates/base.html", line 46, in block "content"
-    {% block app_content %}{% endblock %}
-  File "/Users/nielsenz/flaskNotes/app/templates/index.html", line 11, in block "app_content"
-    {% include '_post.html' %}
-  File "/Users/nielsenz/flaskNotes/app/templates/_post.html", line 4, in top-level template code
-    <a href="{{ url_for('user', username=note.author.username) }}">
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/helpers.py", line 333, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1805, in handle_url_build_error
-    reraise(exc_type, exc_value, tb)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
-    raise value
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/helpers.py", line 323, in url_for
-    force_external=external)
-  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'user' with values ['username']. Did you mean 'register' instead?
-2018-03-18 13:32:47,932 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:47]
-2018-03-18 13:45:45,686 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:47]
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1740, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/wrappers.py", line 921, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/wrappers.py", line 59, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/test.py", line 923, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'bool' object is not callable
+2018-03-18 19:04:29,200 ERROR: Exception on /archive/26/ [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1740, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/wrappers.py", line 921, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/test.py", line 923, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'bool' object is not callable
+2018-03-18 19:04:34,214 ERROR: Exception on /archive/24/ [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1740, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/wrappers.py", line 921, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/test.py", line 923, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'bool' object is not callable
+2018-03-18 19:08:17,552 INFO: Microblog startup [in /Users/nielsenz/flaskNotes/app/__init__.py:51]
+2018-03-18 19:08:22,306 ERROR: Exception on /archive/25/ [GET] [in /Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py:1560]
+Traceback (most recent call last):
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/flask/app.py", line 1740, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/wrappers.py", line 921, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/wrappers.py", line 59, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/Users/nielsenz/flaskNotes/lib/python3.6/site-packages/werkzeug/test.py", line 923, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'bool' object is not callable

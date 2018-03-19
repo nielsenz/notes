@@ -1,10 +1,16 @@
-    <table class="table table-hover">
-        <tr>
-            <td>
-                {{ moment(note.timestamp).calendar() }}
-                </a>
-                <br>
-                {{ note.body }}
-            </td>
-        </tr>
-    </table>
+{# templates/note.html #}
+
+<li class="note col-xs-12 col-sm-6 col-lg-4">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      {{ moment(note.timestamp).calendar() }}
+      <a
+        class="btn btn-danger btn-xs archive-note pull-right"
+        data-note="{{ note.id }}"
+        href="{{ url_for('archive_note', pk=note.id) }}">&times;</a>
+    </div>
+    <div class="panel-body">
+      {{ note.html() }}
+    </div>
+  </div>
+</li>

@@ -1,9 +1,12 @@
 from datetime import datetime
-from app import db, login, app
+from app import db, login, app, oembed
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from time import time
 import jwt
+from flask import Markup
+from markdown import markdown
+from micawber import parse_html
 
 
 @login.user_loader
@@ -26,8 +29,8 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
     def followed_posts(self):
     	own = Note.query.filter_by(user_id=self.id)
-    	return own.order_by(Note.timestamp.desc())
-    
+    	return own.order_by(Note.timestamp.desc()).filter(Note.archived == False)
+
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
             {'reset_password': self.id, 'exp': time() + expires_in},
@@ -43,9 +46,20 @@ class User(UserMixin, db.Model):
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(140))
+    body = db.Column(db.String(1400))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    archived = db.Column(db.Boolean, default=False)
     
     def __repr__(self):
         return '<Note {}>'.format(self.body)
+
+##New code to get markdown integration into the app.
+
+    def html(self):
+        html = parse_html(
+            markdown(self.body),
+            oembed,
+            maxwidth=300,
+            urlize_all=True)
+        return Markup(html)
